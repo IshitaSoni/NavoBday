@@ -96,25 +96,27 @@ h1{
     background: transparent;
 }
 .group {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+}
+
+.track {
     display: inline-flex;
+    gap: 2rem;
     font-family: monofett;
     font-size: xx-large;
-    gap: 2rem;
     animation: scroll 20s linear infinite;
-    background: transparent;
 }
-.group p {
+
+.track p {
     white-space: nowrap;
     flex-shrink: 0;
-    background: transparent;
 }
+
 @keyframes scroll {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(calc(-50% - 1rem));
-    }
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
 }
 .gallery {
     display: grid;

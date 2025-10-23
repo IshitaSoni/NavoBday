@@ -13,7 +13,7 @@
     <nav class="topnav" id="topnav">
         <a href="#hero" class="nav-link">Home</a>
         <a href="#carousel" class="nav-link">Carousel</a>
-        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#gallery" class="nav-link">Memories</a>
     </nav>
 
     <div class="hero" id="hero">
@@ -25,19 +25,14 @@
     </div>
     <div class="carousel" id="carousel">
         <div class="group">
-            <p style="color: pink;">HAPPY BIRTHDAY</p>
-            <p style="color: lightskyblue;">HAPPY BIRTHDAY</p>
-            <p style="color: lightgreen;">HAPPY BIRTHDAY</p>
-            <p style="color: pink;">HAPPY BIRTHDAY</p>
-            <p style="color: lightskyblue;">HAPPY BIRTHDAY</p>
-            <p style="color: lightgreen;">HAPPY BIRTHDAY</p>
-            <!-- Duplicate for seamless loop -->
-            <p style="color: pink;">HAPPY BIRTHDAY</p>
-            <p style="color: lightskyblue;">HAPPY BIRTHDAY</p>
-            <p style="color: lightgreen;">HAPPY BIRTHDAY</p>
-            <p style="color: pink;">HAPPY BIRTHDAY</p>
-            <p style="color: lightskyblue;">HAPPY BIRTHDAY</p>
-            <p style="color: lightgreen;">HAPPY BIRTHDAY</p>
+            <div class="track">
+                <p style="color: pink;">HAPPY BIRTHDAY</p>
+                <p style="color: lightskyblue;">HAPPY BIRTHDAY</p>
+                <p style="color: lightgreen;">HAPPY BIRTHDAY</p>
+                <p style="color: pink;">HAPPY BIRTHDAY</p>
+                <p style="color: lightskyblue;">HAPPY BIRTHDAY</p>
+                <p style="color: lightgreen;">HAPPY BIRTHDAY</p>
+            </div>
         </div>
     </div>
     <!-- <h2>Memories</h2> -->
@@ -62,44 +57,23 @@
         <img src="assets/19.png">
     </div>
 
-    <script>
-        // Smooth scrolling with offset for fixed nav
-        const nav = document.getElementById('topnav');
-        const navHeight = nav ? nav.offsetHeight : 64;
-        const navLinks = document.querySelectorAll('.topnav .nav-link');
+    <div class="carousel" id="carousel">
+        <div class="group">
+            <div class="track">
+                <p style="color: pink;">HAPPY BIRTHDAY</p>
+                <p style="color: lightskyblue;">HAPPY BIRTHDAY</p>
+                <p style="color: lightgreen;">HAPPY BIRTHDAY</p>
+                <p style="color: pink;">HAPPY BIRTHDAY</p>
+                <p style="color: lightskyblue;">HAPPY BIRTHDAY</p>
+                <p style="color: lightgreen;">HAPPY BIRTHDAY</p>
+            </div>
+        </div>
+    </div>
+    <div class="notes" id="notes">
+        <h2>Notes</h2>
 
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                // immediately set active state for instant feedback
-                navLinks.forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
-                const targetId = link.getAttribute('href').substring(1);
-                const target = document.getElementById(targetId) || document.querySelector('.hero');
-                if (!target) return;
-                const rect = target.getBoundingClientRect();
-                const scrollTop = window.scrollY + rect.top - navHeight + 8; // small gap
-                window.scrollTo({ top: scrollTop, behavior: 'smooth' });
-            });
-        });
+    </div>
 
-        // Highlight active nav link while scrolling
-        const sections = [document.getElementById('hero'), document.getElementById('carousel'), document.getElementById('gallery')];
-
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    const id = entry.target.id || 'hero';
-                    const link = document.querySelector(`.topnav a[href="#${id}"]`);
-                    if (link) link.classList.add('active');
-                }
-            });
-        }, { threshold: 0.5, rootMargin: `-${navHeight}px 0px -${navHeight}px 0px` });
-
-        sections.forEach(sec => {
-            if (sec) observer.observe(sec);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
