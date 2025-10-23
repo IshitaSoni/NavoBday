@@ -26,8 +26,8 @@
 			});
 		});
 
-		// Highlight active nav link while scrolling
-		const sections = [document.getElementById('hero'), document.getElementById('carousel'), document.getElementById('gallery')];
+	// Highlight active nav link while scrolling
+	const sections = Array.from(document.querySelectorAll('#hero, #gallery, #notes'));
 
 		const observer = new IntersectionObserver(entries => {
 			entries.forEach(entry => {
@@ -38,23 +38,21 @@
 					if (link) link.classList.add('active');
 				}
 			});
-		}, { threshold: 0.5, rootMargin: `-${navHeight}px 0px -${navHeight}px 0px` });
+		}, { threshold: 0.2, rootMargin: `-${navHeight}px 0px -${navHeight}px 0px` });
 
 		sections.forEach(sec => {
 			if (sec) observer.observe(sec);
 		});
 
-		// Duplicate carousel track content so animation can scroll seamlessly
-		const track = document.querySelector('.carousel .track');
-		if (track) {
+		// Duplicate carousel track content so animation can scroll seamlessly for ALL carousels
+		const tracks = document.querySelectorAll('.carousel .track');
+		tracks.forEach(track => {
 			const parentWidth = track.parentElement.getBoundingClientRect().width;
-			// clone once for smoothness
 			const clone = track.innerHTML;
 			track.innerHTML += clone;
-			// If still not wide enough, append again
 			let totalWidth = track.getBoundingClientRect().width;
 			if (totalWidth < parentWidth * 2) track.innerHTML += clone;
-		}
+		});
 	});
 })();
 
